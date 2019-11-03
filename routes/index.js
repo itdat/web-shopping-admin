@@ -26,7 +26,12 @@ router.get("/statistic.html", function(req, res, next) {
 
 /* GET top 10 page. */
 router.get("/top-10.html", function(req, res, next) {
-  res.render("top-10", { title: "Thống kê kinh doanh" });
+  res.render("top-10", { title: "Thống kê top 10" });
+});
+
+/* GET login page. */
+router.get("/login.html", function(req, res, next) {
+  res.render("login", { title: "Đăng nhập | Đăng ký", layout: "login" });
 });
 
 module.exports = router;
