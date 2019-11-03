@@ -19,4 +19,14 @@ router.get("/single-user.html", function(req, res, next) {
   res.render("single-user", { title: "Thông tin người dùng" });
 });
 
+/* GET statistic page. */
+router.get("/statistic.html", function(req, res, next) {
+  res.render("statistic", { title: "Thống kê kinh doanh" });
+});
+
+/* GET top 10 page. */
+router.get("/top-10.html", function(req, res, next) {
+  res.render("top-10", { title: "Thống kê kinh doanh" });
+});
+
 module.exports = router;
