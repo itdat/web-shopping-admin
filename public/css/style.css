@@ -2910,3 +2910,23 @@ ul.new li.new_right {
     font-size: 64%;
   }
 }
+
+.sidebar .active .fa-chevron-left {
+  display: none;
+}
+
+.sidebar .fa-chevron-down {
+  display: none;
+}
+
+.sidebar .active .fa-chevron-down {
+  display: block;
+}
+
+.well1 form {
+  margin-bottom: 3rem;
+}
+
+.well1 .bs-example4 {
+  padding: 0;
+}
