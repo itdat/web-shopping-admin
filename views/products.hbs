@@ -1,0 +1,259 @@
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card strpied-tabled-with-hover">
+          <div class="card-header ">
+            <h4 class="card-title mb-4">Danh sách sản phẩm</h4>
+            <p class="card-category">Kết quả từ 1-10 trên 1000 loại sản phẩm đang được kinh doanh</p>
+          </div>
+          <div class="card-body p-0 pt-2 table-responsive">
+            <table id="product-table" class="table table-hover table-striped">
+              <thead>
+                <th>ID</th>
+                <th>Tên</th>
+                <th>Nhãn hiệu</th>
+                <th>Giá</th>
+                <th>Số lượng</th>
+                <th>Ngày ra mắt</th>
+                <th>Đánh giá</th>
+              </thead>
+              <tbody>
+                {{#each allProducts}}
+                <tr data-path="{{path}}">
+                  <td>{{id}}</td>
+                  <td>{{name}}</td>
+                  <td>{{brand}}</td>
+                  <td>{{price}} ₫</td>
+                  <td>{{quantity}}</td>
+                  <td>{{dateRelease}}</td>
+                  <td>{{rating}}/5</td>
+                </tr>
+                {{/each}}
+              </tbody>
+            </table>
+            <nav class="pull-right mr-4" aria-label="...">
+              <ul class="pagination">
+                <li class="page-item disabled">
+                  <a class="page-link" href="#" tabindex="-1">Trước</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item active">
+                  <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#">Kế tiếp</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="card mb-0" id="product-details-table">
+          <div class="card-header">
+            <h4 class="card-title">Chi tiết sản phẩm</h4>
+          </div>
+          <div class="card-body">
+            <form id="product-details" method="POST" action="/products/update"
+              enctype="application/x-www-form-urlencoded">
+              <div class="row">
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <label class="font-weight-bold">ID</label>
+                    <input id="id" name="id" type="text" value="{{productDetails.id}}" class="form-control" disabled>
+                  </div>
+                </div>
+                <div class="col-md-7">
+                  <div class="form-group">
+                    <label class="font-weight-bold">Tên sản phẩm</label>
+                    <input name="name" type="text" value="{{productDetails.name}}" class="form-control"
+                      placeholder="VD: Nokia 8.1">
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label class="font-weight-bold">Nhãn hiệu</label>
+                    <input name="brand" type="text" value="{{productDetails.brand}}" class="form-control"
+                      placeholder="VD: Nokia">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-5">
+                  <div class="form-group">
+                    <label class="font-weight-bold">Giá bán (₫)</label>
+                    <input id="price" class="form-control" name="price" type="text" value="{{productDetails.price}}"
+                      placeholder="VD: 8.000.000">
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <label class="font-weight-bold">Khuyến mãi (%)</label>
+                    <input id="promote" name="promote" type="text" value="{{productDetails.promote}}"
+                      class="form-control" placeholder="VD: 20">
+                  </div>
+                </div>
+                <div class="col-md-5">
+                  <div class="form-group">
+                    <label class="font-weight-bold">Giá bán áp dụng khuyến mãi (₫)</label>
+                    <input id="newPrice" type="text" value="{{productDetails.newPrice}}" class="form-control"
+                      placeholder="" readonly>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-3 pr-1">
+                  <div class="form-group">
+                    <label class="font-weight-bold">Số lượng tồn kho</label>
+                    <input name="quantity" type="text" value="{{productDetails.quantity}}" class="form-control"
+                      placeholder="VD: 1000">
+                  </div>
+                </div>
+                <div class="col-md-3 pr-1">
+                  <div class="form-group">
+                    <label class="font-weight-bold">Số lượng đã bán</label>
+                    <input type="text" value="{{productDetails.soldQuantity}}" class="form-control"
+                      placeholder="VD: 1000" disabled>
+                  </div>
+                </div>
+                <div class="col-md-3 pr-1">
+                  <div class="form-group">
+                    <label class="font-weight-bold">Ngày ra mắt </label>
+                    <input name="dateRelease" type="date" value="{{productDetails.dateReleaseInput}}"
+                      class="form-control">
+                  </div>
+                </div>
+                <div class="col-md-3 pl-1">
+                  <div class="form-group">
+                    <label class="font-weight-bold">Đánh giá</label>
+                    <input type="text" {{#if productDetails.rating}} value="{{productDetails.rating}}/5" {{/if}}
+                      class="form-control" placeholder="VD: 5/5" disabled>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class="font-weight-bold">Chọn file từ máy tính</label>
+                    <input type="file" class="form-control-file">
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <div class="form-group">
+                    <label class="font-weight-bold">URL hình ảnh 1</label>
+                    <input name="img1" type="text" class="form-control" placeholder="VD: http://imgur.com/id1"
+                      value="{{productDetails.images.[0]}}">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class="font-weight-bold">Chọn file từ máy tính</label>
+                    <input type="file" class="form-control-file">
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <div class="form-group">
+                    <label class="font-weight-bold">URL hình ảnh 2</label>
+                    <input name="img2" type="text" class="form-control" placeholder="VD: http://imgur.com/id2"
+                      value="{{productDetails.images.[1]}}">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class="font-weight-bold">Chọn file từ máy tính</label>
+                    <input type="file" class="form-control-file">
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <div class="form-group">
+                    <label class="font-weight-bold">URL hình ảnh 3</label>
+                    <input name="img3" type="text" class="form-control" placeholder="VD: http://imgur.com/id3"
+                      value="{{productDetails.images.[2]}}">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class="font-weight-bold">Chọn file từ máy tính</label>
+                    <input type="file" class="form-control-file">
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <div class="form-group">
+                    <label class="font-weight-bold">URL hình ảnh 4</label>
+                    <input name="img4" type="text" class="form-control" placeholder="VD: http://imgur.com/id4"
+                      value="{{productDetails.images.[3]}}">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <label class="font-weight-bold">URL sản phẩm</label>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">http://blueshopp/product/</span>
+                    </div>
+                    <input name="path" type="text" value="{{productDetails.path}}" class="form-control" value="">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label class="font-weight-bold">Mô tả</label>
+                    <textarea name="description" rows="4" cols="80" class="form-control"
+                      placeholder="Nhập mô tả sản phẩm...">{{productDetails.description}}</textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="pull-right">
+                <button type="reset" class="btn btn-info btn-fill mr-1">Khôi phục</button>
+                <button id="submitForm" type="submit" class="btn btn-info btn-fill">Cập nhật</button>
+              </div>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid mt-4">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="card" id="product-image">
+              <div class="card-body">
+                <img class="img-fluid" src="/images/image-not-available.jpg" alt="Ảnh sản phẩm">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card" id="product-image">
+              <div class="card-body">
+                <img class="img-fluid" src="/images/image-not-available.jpg" alt="Ảnh sản phẩm">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card" id="product-image">
+              <div class="card-body">
+                <img class="img-fluid" src="/images/image-not-available.jpg" alt="Ảnh sản phẩm">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card" id="product-image">
+              <div class="card-body">
+                <img class="img-fluid" src="/images/image-not-available.jpg" alt="Ảnh sản phẩm">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
