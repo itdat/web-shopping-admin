@@ -1,12 +1,18 @@
+let scrollTop = $("#product-details-table").offset().top;
+
 function formatAmount(amount) {
   amount = Math.floor(amount / 1000) * 1000 + (amount % 1000 >= 500) * 1000;
   return amount.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
 }
 
 const updateProductListTable = path => {
-  $.get(`/products`, function(data) {
+  $.get(window.location.href, function(data) {
     const $data = $(data);
     $("#product-table").html($data.find("#product-table > *"));
+    $("#productListPagination").html($data.find("#productListPagination > *"));
+
+    $(".main-panel").scrollTop(0);
+    scrollTop = $("#product-details-table").offset().top;
   });
 };
 
@@ -17,20 +23,33 @@ const updateProductDetailsTable = path => {
   });
 };
 
+const scrollToDetailsForm = () => {
+  $(".main-panel").animate(
+    {
+      scrollTop
+    },
+    800
+  );
+  console.log("Scroll to ", scrollTop);
+};
+
+const getBlankForm = () => {
+  $.get(`/products`, function(data) {
+    const $data = $(data);
+    $("#product-details-table").html($data.find("#product-details-table > *"));
+  });
+};
+
 $(document).ready(function() {
-  let scrollTop = $("#product-details-table").offset().top;
+  // let scrollTop = $("#product-details-table").offset().top;
 
   // Event listenter on click table row
   $("#product-table").on("click", function(e) {
     $target = $(e.target);
     if ($target.prop("tagName") === "TD") {
       updateProductDetailsTable($target.parent().attr("data-path"));
-      $(".main-panel").animate(
-        {
-          scrollTop
-        },
-        800
-      );
+      console.log(scrollTop);
+      scrollToDetailsForm();
     }
   });
 
@@ -46,14 +65,21 @@ $(document).ready(function() {
   // Event listener on submit form
   $("#product-details-table").on("click", function(e) {
     $target = $(e.target);
-    if ($target.attr("id") === "submitForm") {
+    let url = "";
+    if ($target.attr("id") === "submitFormUpdate")
+      url = "/products/update/" + $("input#id").val();
+    if ($target.attr("id") === "submitFormCreate") url = "/products/create";
+
+    if (
+      $target.attr("id") === "submitFormUpdate" ||
+      $target.attr("id") === "submitFormCreate"
+    ) {
       e.preventDefault();
 
-      let id = $("input#id").val();
       let form = $("form#product-details");
       $.ajax({
         type: "POST",
-        url: `products/update/${id}`,
+        url,
         data: form.serialize(),
         success: function() {
           updateProductListTable();
@@ -64,6 +90,24 @@ $(document).ready(function() {
         }
       });
     }
+  });
+
+  $("#acceptDelete").on("click", function(e) {
+    e.preventDefault();
+
+    $.ajax({
+      type: "POST",
+      url: `/products/delete/${$("input#id").val()}`,
+      success: function() {
+        updateProductListTable();
+        getBlankForm();
+        $("#deleteProduct").modal("hide");
+        alert("Thành công");
+      },
+      error: function() {
+        alert("Thất bại");
+      }
+    });
   });
 
   // Event listener on change 'promote' value
@@ -95,6 +139,15 @@ $(document).ready(function() {
       } else {
         $("#newPrice").val("#Lỗi giá trị");
       }
+    }
+  });
+
+  $("#productListWrapper").on("click", function(e) {
+    $target = $(e.target);
+
+    if ($target.attr("id") === "addNewProduct") {
+      getBlankForm();
+      scrollToDetailsForm();
     }
   });
 });

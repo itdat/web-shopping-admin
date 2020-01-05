@@ -3,7 +3,9 @@ var router = express.Router();
 const {
   getAllProducts,
   getSingleProduct,
-  updateSingleProduct
+  updateSingleProduct,
+  createNewProduct,
+  deleteProduct
 } = require("../controllers/product");
 
 // Middlewares to validate data sent to server
@@ -13,10 +15,10 @@ router.get("/", getAllProducts);
 
 router.get("/:path", getSingleProduct);
 
-// router.post("/create/:id", createSingleProduct);
+router.post("/create", createNewProduct);
 
 router.post("/update/:id", isValidID, updateSingleProduct);
 
-// router.post("/delete/:id", deleteSingleProduct);
+router.post("/delete/:id", isValidID, deleteProduct);
 
 module.exports = router;

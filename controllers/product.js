@@ -76,7 +76,8 @@ module.exports.getSingleProduct = async (req, res) => {
     // Create view model
     let viewModel = {
       title: productDetails.name,
-      productDetails
+      productDetails,
+      update: true
     };
 
     // Response
@@ -98,4 +99,22 @@ module.exports.getSingleProduct = async (req, res) => {
 module.exports.updateSingleProduct = async (req, res) => {
   productModel.updateProductDetails(Number(req.params.id), req.body);
   res.sendStatus(200);
+};
+
+module.exports.createNewProduct = async (req, res) => {
+  let result = await productModel.createNewProduct(req.body);
+  if (result) {
+    res.sendStatus(200);
+  } else {
+    res.sendStatus(400);
+  }
+};
+
+module.exports.deleteProduct = async (req, res) => {
+  let result = await productModel.deleteProduct(req.params.id);
+  if (result) {
+    res.sendStatus(200);
+  } else {
+    res.sendStatus(400);
+  }
 };

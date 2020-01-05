@@ -7,7 +7,7 @@
             <h4 class="card-title mb-4">Danh sách sản phẩm</h4>
             <p class="card-category">Kết quả từ 1-10 trên 1000 loại sản phẩm đang được kinh doanh</p>
           </div>
-          <div class="card-body p-0 pt-2 table-responsive">
+          <div id="productListWrapper" class="card-body p-0 pt-2 table-responsive">
             <table id="product-table" class="table table-hover table-striped">
               <thead>
                 <th>ID</th>
@@ -32,20 +32,20 @@
                 {{/each}}
               </tbody>
             </table>
-            <nav class="pull-right mr-4" aria-label="...">
-              <ul class="pagination">
-                <li class="page-item disabled">
-                  <a class="page-link" href="#" tabindex="-1">Trước</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item active">
-                  <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                  <a class="page-link" href="#">Kế tiếp</a>
-                </li>
-              </ul>
+            <button id="addNewProduct" class="btn btn-info m-3">Thêm sản phẩm</button>
+            <nav class="pull-right mr-4 mb-4" aria-label="...">
+              <div id="productListPagination" class="pagination-box">
+                <div class="paginationjs">
+                  <div class="paginationjs-pages">
+                    <ul>
+                      {{#if pageCount}}
+                      {{#pagination pageCount currentPage pageRange path}}
+                      {{/pagination}}
+                      {{/if}}
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </nav>
           </div>
         </div>
@@ -56,7 +56,8 @@
             <h4 class="card-title">Chi tiết sản phẩm</h4>
           </div>
           <div class="card-body">
-            <form id="product-details" method="POST" action="/products/update"
+            <form id="product-details" method="POST"
+              action="{{#if update}}/products/update{{else}}/products/create{{/if}}"
               enctype="application/x-www-form-urlencoded">
               <div class="row">
                 <div class="col-md-2">
@@ -214,8 +215,16 @@
                 </div>
               </div>
               <div class="pull-right">
-                <button type="reset" class="btn btn-info btn-fill mr-1">Khôi phục</button>
-                <button id="submitForm" type="submit" class="btn btn-info btn-fill">Cập nhật</button>
+                {{#if update}}<button type="reset" class="btn btn-danger mr-1" data-toggle="modal"
+                  data-target="#deleteProduct">Xóa
+                  sản phẩm</button>
+                {{/if}}
+                <button type="reset" class="btn btn-secondary mr-1">Khôi phục</button>
+                {{#if update}}
+                <button id="submitFormUpdate" type="submit" class="btn btn-info">Cập nhật</button>
+                {{else}}
+                <button id="submitFormCreate" type="submit" class="btn btn-info">Tạo mới</button>
+                {{/if}}
               </div>
               <div class="clearfix"></div>
             </form>
@@ -253,6 +262,29 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="deleteProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Cảnh báo xóa sản phẩm</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Thao tác không thể khôi phục. Bạn có chắn chắn muốn xóa sản phẩm?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Quay lại</button>
+        <button id="acceptDelete" type="button" class="btn btn-primary"> <span
+            class="spinner-border spinner-border-sm mr-1" role="status" aria-hidden="true"></span>Xác
+          nhận</button>
       </div>
     </div>
   </div>
