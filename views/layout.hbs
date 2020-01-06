@@ -25,10 +25,6 @@
   <link rel="stylesheet" href="/css/bootstrap.min.css" />
 
   <link rel="stylesheet" href="/css/pagination.css">
-
-  {{!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> --}}
 </head>
 
 <body>
@@ -54,14 +50,14 @@ Tip 2: you can also add an image using data-image tag
           </li>
           <li>
             <a class="nav-link" href="/products">
-              <i class="nc-icon nc-circle-09"></i>
+              <i class="nc-icon nc-backpack"></i>
               <p>Quản lý sản phẩm</p>
             </a>
           </li>
           <li>
             <a class="nav-link" href="./table.html">
-              <i class="nc-icon nc-notes"></i>
-              <p>Table List</p>
+              <i class="nc-icon nc-single-02"></i>
+              <p>Quản lý người dùng</p>
             </a>
           </li>
           <li>
@@ -103,58 +99,18 @@ Tip 2: you can also add an image using data-image tag
             <span class="navbar-toggler-bar burger-lines"></span>
           </button>
           <div class="collapse navbar-collapse justify-content-end" id="navigation">
-            <ul class="nav navbar-nav mr-auto">
-              <li class="nav-item">
-                <a href="#" class="nav-link" data-toggle="dropdown">
-                  <i class="nc-icon nc-palette"></i>
-                  <span class="d-lg-none">Bảng điều khiển</span>
-                </a>
-              </li>
-              <li class="dropdown nav-item">
-                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                  <i class="nc-icon nc-planet"></i>
-                  <span class="notification">5</span>
-                  <span class="d-lg-none">Notification</span>
-                </a>
-                <ul class="dropdown-menu">
-                  <a class="dropdown-item" href="#">Notification 1</a>
-                  <a class="dropdown-item" href="#">Notification 2</a>
-                  <a class="dropdown-item" href="#">Notification 3</a>
-                  <a class="dropdown-item" href="#">Notification 4</a>
-                  <a class="dropdown-item" href="#">Another notification</a>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nc-icon nc-zoom-split"></i>
-                  <span class="d-lg-block">&nbsp;Search</span>
-                </a>
-              </li>
-            </ul>
             <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="#pablo">
-                  <span class="no-icon">Account</span>
-                </a>
-              </li>
-              <li class="nav-item dropdown">
+              <li class="nav-item dropdown mr-5">
                 <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink"
                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <span class="no-icon">Dropdown</span>
+                  <span class="no-icon">Tùy chọn</span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
+                  <a class="dropdown-item" data-toggle="modal" data-target="#changeProfileInfo"
+                    data-whatever="@mdo">Thông tin cá nhân</a>
                   <div class="divider"></div>
-                  <a class="dropdown-item" href="#">Separated link</a>
+                  <a class="dropdown-item" href="/logout">Đăng xuất</a>
                 </div>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#pablo">
-                  <span class="no-icon">Log out</span>
-                </a>
               </li>
             </ul>
           </div>
@@ -176,6 +132,46 @@ Tip 2: you can also add an image using data-image tag
           </nav>
         </div>
       </footer>
+
+      <div class="modal fade" id="changeProfileInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Thông tin cá nhân</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="text-center">
+                  <img src="/images/default-avatar.png" class="rounded" alt="...">
+                </div>
+
+                <div class="form-group">
+                  <label for="adminName" class="col-form-label">Họ và tên</label>
+                  <input type="text" class="form-control" id="adminName" name="name">
+                </div>
+
+                <div class="form-group">
+                  <label for="adminBirthday">Ngày sinh</label>
+                  <input name="birthday" type="date" id="adminBirthday" class="form-control">
+                </div>
+
+                <div class="form-group">
+                  <label for="message-text" class="col-form-label">Giới thiệu</label>
+                  <textarea class="form-control" id="message-text"></textarea>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+              <button type="button" class="btn btn-primary">Cập nhật thông tin</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <!--   -->
