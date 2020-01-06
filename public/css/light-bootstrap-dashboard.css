@@ -837,7 +837,7 @@ body>.navbar-collapse[data-color="purple"]:after {
     line-height: 1.9;
 }
 
-.modal .modal-content .modal-body+.modal-footer {
+/* .modal .modal-content .modal-body+.modal-footer {
     padding-top: 0;
 }
 
@@ -860,7 +860,7 @@ body>.navbar-collapse[data-color="purple"]:after {
 .modal .modal-content .modal-footer .btn:hover,
 .modal .modal-content .modal-footer .btnfocus {
     text-decoration: none;
-}
+} */
 
 .btn {
     border-width: 2px;
@@ -5306,3 +5306,43 @@ label.error {
     font-style: italic;
 }
 
+/* CSS used here will be applied after bootstrap.css */
+body {
+    background-color: #eaeaea;
+  }
+  
+  img.avatar,
+  div.avatar {
+    border: 1px solid #eee;
+    width: 122px;
+    height: 122px;
+  }
+  
+  .btn-file {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .btn-file input[type=file] {
+      position: absolute;
+      top: 0;
+      right: 0;
+      min-width: 100%;
+      min-height: 100%;
+      font-size: 100px;
+      text-align: right;
+      filter: alpha(opacity=0);
+      opacity: 0;
+      outline: none;
+      background: white;
+      cursor: inherit;
+      display: block;
+  }
+
+  div#img-preview-block {
+    display: inline-block;
+}
+
+.btn.btn-link.btn-file:hover {
+    text-decoration: none;
+}
