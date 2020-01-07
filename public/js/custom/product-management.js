@@ -150,4 +150,53 @@ $(document).ready(function() {
       scrollToDetailsForm();
     }
   });
+
+  $("#product-details-table").on("change", function(e) {
+    let $target = $(e.target);
+    console.log($target);
+    if ($target.hasClass("upload-img")) {
+      var $files = $target.get(0).files;
+
+      if ($files.length) {
+        // Reject big files
+        if ($files[0].size > $target.data("max-size") * 1024) {
+          console.log("Please select a smaller file");
+          return false;
+        }
+
+        // Begin file upload
+        console.log("Uploading file to Imgur..");
+
+        // Replace ctrlq with your own API key
+        var apiUrl = "https://api.imgur.com/3/image";
+        var apiKey = "d315c67d0302b9f";
+
+        var settings = {
+          async: false,
+          crossDomain: true,
+          processData: false,
+          contentType: false,
+          type: "POST",
+          url: apiUrl,
+          headers: {
+            Authorization: "Client-ID " + apiKey,
+            Accept: "application/json"
+          },
+          mimeType: "multipart/form-data"
+        };
+
+        var formData = new FormData();
+        formData.append("image", $files[0]);
+        settings.data = formData;
+
+        // Response contains stringified JSON
+        // Image URL available at response.data.link
+        $.ajax(settings).done(function(response) {
+          response = JSON.parse(response);
+          $("#" + $target.attr("data-link-to")).val(response.data.link);
+          alert("Upload thành công!");
+        });
+      }
+    }
+  });
 });

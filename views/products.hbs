@@ -139,7 +139,7 @@
                   <div class="col-md-3">
                     <div class="card" id="product-image">
                       <div class="card-body">
-                        <img class="img-fluid" src="/images/image-not-available.jpg" alt="Ảnh sản phẩm">
+                        <img class="img-fluid" src="https://i.imgur.com/VPQOY0Z.jpeg" alt="Ảnh sản phẩm">
                       </div>
                     </div>
                   </div>
@@ -170,14 +170,15 @@
                 <div class="col-md-4">
                   <div class="form-group">
                     <label class="font-weight-bold">Chọn file từ máy tính</label>
-                    <input type="file" class="form-control-file">
+                    <input type="file" class="upload-img" accept="image/*" data-max-size="5000"
+                      data-link-to="productImg1" />
                   </div>
                 </div>
                 <div class="col-md-8">
                   <div class="form-group">
                     <label class="font-weight-bold">URL hình ảnh 1</label>
-                    <input name="img1" type="text" class="form-control" placeholder="VD: http://imgur.com/id1"
-                      value="{{productDetails.images.[0]}}">
+                    <input id="productImg1" name="img1" type="text" class="form-control"
+                      placeholder="VD: http://imgur.com/id1" value="{{productDetails.images.[0]}}">
                   </div>
                 </div>
               </div>
@@ -185,14 +186,15 @@
                 <div class="col-md-4">
                   <div class="form-group">
                     <label class="font-weight-bold">Chọn file từ máy tính</label>
-                    <input type="file" class="form-control-file">
+                    <input type="file" class="upload-img" accept="image/*" data-max-size="5000"
+                      data-link-to="productImg2" />
                   </div>
                 </div>
                 <div class="col-md-8">
                   <div class="form-group">
                     <label class="font-weight-bold">URL hình ảnh 2</label>
-                    <input name="img2" type="text" class="form-control" placeholder="VD: http://imgur.com/id2"
-                      value="{{productDetails.images.[1]}}">
+                    <input id="productImg2" name="img2" type="text" class="form-control"
+                      placeholder="VD: http://imgur.com/id2" value="{{productDetails.images.[1]}}">
                   </div>
                 </div>
               </div>
@@ -200,14 +202,15 @@
                 <div class="col-md-4">
                   <div class="form-group">
                     <label class="font-weight-bold">Chọn file từ máy tính</label>
-                    <input type="file" class="form-control-file">
+                    <input type="file" class="upload-img" accept="image/*" data-max-size="5000"
+                      data-link-to="productImg3" />
                   </div>
                 </div>
                 <div class="col-md-8">
                   <div class="form-group">
                     <label class="font-weight-bold">URL hình ảnh 3</label>
-                    <input name="img3" type="text" class="form-control" placeholder="VD: http://imgur.com/id3"
-                      value="{{productDetails.images.[2]}}">
+                    <input id="productImg3" name="img3" type="text" class="form-control"
+                      placeholder="VD: http://imgur.com/id3" value="{{productDetails.images.[2]}}">
                   </div>
                 </div>
               </div>
@@ -215,14 +218,15 @@
                 <div class="col-md-4">
                   <div class="form-group">
                     <label class="font-weight-bold">Chọn file từ máy tính</label>
-                    <input type="file" class="form-control-file">
+                    <input type="file" class="upload-img" accept="image/*" data-max-size="5000"
+                      data-link-to="productImg4" />
                   </div>
                 </div>
                 <div class="col-md-8">
                   <div class="form-group">
                     <label class="font-weight-bold">URL hình ảnh 4</label>
-                    <input name="img4" type="text" class="form-control" placeholder="VD: http://imgur.com/id4"
-                      value="{{productDetails.images.[3]}}">
+                    <input id="productImg4" name="img4" type="text" class="form-control"
+                      placeholder="VD: http://imgur.com/id4" value="{{productDetails.images.[3]}}">
                   </div>
                 </div>
               </div>

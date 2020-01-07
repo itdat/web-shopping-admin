@@ -7,6 +7,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="/images/apple-icon.png" />
   <link rel="icon" type="image/png" href="/images/favicon.ico" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta http-equiv="Content-Security-Policy" content="img-src 'self' https://i.imgur.com;">
   <title>
     Blueshopp | Bảng điều khiển
   </title>
@@ -152,7 +153,7 @@ Tip 2: you can also add an image using data-image tag
                     style="background-size:cover; 
                 background-image:url({{#if user.profilePicture}}{{user.profilePicture}}{{else}}/images/default-avatar.png{{/if}})"></div>
                   <br>
-                  <span class="btn btn-link btn-file">Đổi ảnh đại diện<input type="file" id="upload-img" class="imgur"
+                  <span class="btn btn-link btn-file">Đổi ảnh đại diện<input type="file" id="" class="upload-img imgur"
                       accept="image/*" data-max-size="5000"></span>
                 </div>
 
@@ -217,6 +218,11 @@ Tip 2: you can also add an image using data-image tag
 
   <script src="/js/custom/user.management.js"></script>
   <script src="/js/custom/user.pagination.js"></script>
+
+  <script type="text/javascript" src="/js/jquery.ui.widget.js"></script>
+  <script type="text/javascript" src="/js/jquery.iframe-transport.js"></script>
+  <script type="text/javascript" src="/js/jquery.fileupload.js"></script>
+  <script type="text/javascript" src="/js/jquery.cloudinary.js"></script>
 </body>
 
 

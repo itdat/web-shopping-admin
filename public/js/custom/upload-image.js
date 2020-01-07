@@ -1,5 +1,5 @@
 $("document").ready(function() {
-  $("input[type=file]").on("change", function() {
+  $("#profileForm input[type=file]").on("change", function() {
     var $files = $(this).get(0).files;
 
     if ($files.length) {
