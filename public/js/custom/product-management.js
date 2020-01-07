@@ -83,6 +83,7 @@ $(document).ready(function() {
         data: form.serialize(),
         success: function() {
           updateProductListTable();
+          updateProductDetailsTable();
           alert("Thành công");
         },
         error: function() {
