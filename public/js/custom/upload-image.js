@@ -40,6 +40,7 @@ $("document").ready(function() {
         const res = JSON.parse(response);
 
         if (res.status === 200) {
+          console.log(res.data.link);
           let data = JSON.stringify({
             profilePicture: res.data.link.replace(/^http:\/\//i, "https://")
           });

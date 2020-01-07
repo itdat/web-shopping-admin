@@ -1828,7 +1828,7 @@ fieldset[disabled] .form-control {
     display: inline-block;
     position: relative;
     cursor: pointer;
-    padding-left: 35px;
+    /* padding-left: 35px; */
     line-height: 26px;
     margin-bottom: 0;
 }
@@ -3944,7 +3944,7 @@ Copyright (c) 2015 Daniel Eden
     .footer:not(.footer-big) nav>ul li:first-child {
         margin-left: 0;
     }
-    .card form [class*="col-"] {
+    /* .card form [class*="col-"] {
         padding: 6px;
     }
     .card form [class*="col-"]:first-child {
@@ -3952,7 +3952,7 @@ Copyright (c) 2015 Daniel Eden
     }
     .card form [class*="col-"]:last-child {
         padding-right: 15px;
-    }
+    } */
 }
 
 /*          Changes for small display      */
