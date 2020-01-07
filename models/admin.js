@@ -13,11 +13,12 @@ const dateFormat = require("../utilities/date.format");
 module.exports.findAdmin = async email => {
   const data = await pool.query(`SELECT * FROM admin WHERE email = '${email}'`);
 
+  if (data.rows.length == 0) return null;
+
   data.rows[0].birthday = convertDateInputFormat(
     dateFormat(data.rows[0].birthday, "dd/mm/yyyy")
   );
 
-  if (data.rows.length == 0) return null;
   return data.rows[0];
 };
 

@@ -10,8 +10,12 @@ $(document).ready(function() {
       e.preventDefault();
       if (!$target.parent().hasClass("disabled")) {
         const targetURL = $target.attr("href");
-        history.pushState({ url: targetURL }, "", targetURL);
-        updateUserListTable();
+        try {
+          history.pushState({ url: targetURL }, "", targetURL);
+          updateUserListTable();
+        } catch {
+          window.location.href = targetURL;
+        }
       }
     }
   });
